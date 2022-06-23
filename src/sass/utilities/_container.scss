@@ -1,0 +1,32 @@
+@use "../abstracts/mixins" as *;
+@use "../vendors/include-media" as *;
+
+$breakpoints: (
+	phone: 320px,
+	tablet: 768px,
+	desktop: 1440px
+);
+
+.Container {
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+
+@include media(">=tablet") {
+	.Container {
+		width: auto;
+		margin: 0;
+		padding-left: 10rem;
+		padding-right: 10rem;
+	}
+}
+
+@include media(">=desktop") {
+	.Container {
+		position: relative;
+		max-width: 144rem;
+		margin: 0 auto;
+		padding-left: 14.3rem;
+		padding-right: 12.7rem;
+	}
+}

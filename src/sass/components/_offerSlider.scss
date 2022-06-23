@@ -1,0 +1,291 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/placeholders" as *;
+@use "../vendors/include-media" as *;
+
+$breakpoints: (
+	phone: 320px,
+	tablet: 768px,
+	desktop: 1440px
+);
+
+.OfferSlider {
+    padding: 2rem !important;
+    margin: -2rem -3.3rem !important;
+
+    &-Wrapper {
+        position: relative;
+        margin-bottom: 3rem;
+        height: 40rem;
+    }
+
+    &-Slide {
+        margin: 0 auto;
+        position: relative;
+        box-shadow: 0 0 2.5rem var(--clr-neutral-1200);
+    }
+
+    &-Offer {
+        box-sizing: border-box;
+        min-width: 28.8rem;
+        height: 40rem;
+        min-height: 40rem;
+        background-color: var(--clr-secondary-100);
+    }
+
+    &-Pagination {
+        @include flex(flex-end, center, row);
+    }
+
+    &-PaginationFirstSlideNumber {
+        color: var(--clr-primary-200);
+        font-family: var(--ff-normal-600);
+        font-style: normal;
+        font-size: var(--fs-320-15);
+        line-height: 2.55rem;
+
+        &::after {
+            margin-left: 0.4rem;
+            @extend %number-devider;
+        }
+    }
+
+    &-PaginationLastSlideNumber {
+        color: var(--clr-primary-200);
+        font-family: var(--ff-normal-600);
+        font-style: normal;
+        font-size: var(--fs-320-15);
+        line-height: 2.55rem;
+        margin-left: 0.4rem;
+    }
+
+    &-PaginationProgressBar {
+        order: -1;
+        @extend %progress-bar;
+    }
+
+    &-PaginationProgressBar_fillColor_dark {  
+        display: block; 
+        position: relative; 
+        transform-origin: left; 
+        @extend %progress-bar-progress;
+    }
+}
+
+.Offer {
+    overflow: hidden;
+    padding: 3rem 2.5rem;
+
+    &-ProductName {
+        position: relative;
+        z-index: 140;
+        color: var(--clr-primary-300);
+        font-family: var(--ff-normal-400b);
+        font-style: normal;
+        font-weight: 400;
+        font-size: var(--fs-320-16);
+        line-height: 2.2rem;
+    }
+
+    &-Price {
+        z-index: 2;
+        @include flex(center, flex-start, row);
+    }
+
+    &-NewPrice {
+        z-index: 2;
+        margin-right: 1rem;
+        color: var(--clr-primary-100);
+        font-family: var(--ff-normal-600);
+        font-weight: 600;
+        font-size: var(--fs-320-28);
+        line-height: 3.8rem;
+    }
+
+    &-OldPrice {
+        z-index: 2;
+        color: var(--clr-neutral-300);
+        font-family: var(--ff-normal-600);
+        font-weight: 600;
+        font-size: var(--fs-320-16);
+        line-height: 2.2rem;
+        text-decoration-line: line-through;
+    }
+
+    &-ProductImageWrapper {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+    }
+
+    &-ProductImage {
+        height: max(25rem, calc(25rem + 10vw)); 
+        z-index: 1;
+        object-fit: cover;
+        user-select: none;
+        pointer-events: none;
+    }
+
+    &-Button {
+        display: block;
+        position: absolute;
+        bottom: -1rem;
+        left: 0;
+        width: 100%;
+        height: 5.8rem;
+        background-color: var(--clr-primary-100);
+        z-index: 2;
+        cursor: pointer;
+        font-family: var(--ff-normal-400b);
+        color: var(--clr-secondary-100);
+        font-style: normal;
+        font-weight: 400;
+        font-size: var(--fs-1440-16);
+        line-height: 2.2rem;
+        letter-spacing: 0.208rem;
+        text-transform: uppercase;
+        opacity: 0;
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        transform: translateY(0);
+    }
+
+    &:hover button,
+    &:focus button {
+        opacity: 1;
+        transform: translateY(-1rem);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: var(--clr-primary-100);
+        z-index: 2;
+        opacity: 0;
+        transition: opacity 0.6s ease, height 0.6s ease;
+    }
+
+    &:hover::after,
+    &:focus::after {
+        opacity: 1;
+        height: 0.5rem;
+        transition: opacity 0.3s ease, height 0.3s ease;
+    }
+}
+
+@supports (-moz-appearance:none) {
+    .OfferSlider-PaginationFirstSlideNumberFirst { 
+        font-size: 1.45rem;
+    } 
+
+    .OfferSlider-PaginationLastSlideNumberFirst { 
+        font-size: 1.45rem;
+    } 
+}
+
+@include media(">=tablet") {
+    .OfferSlider {
+        &-Offer {
+            box-sizing: border-box;
+            width: min(calc(3.8rem + 80%), 91rem);
+            height: 40rem;
+            background-color: var(--clr-secondary-100);
+        }
+    
+        &-Pagination {
+            @include flex(flex-end, center, row);
+        }
+    }
+    
+    .Offer {
+        &-ProductImageWrapper {
+            bottom: 0;
+            right: -5%;
+        }
+    }
+}
+
+@include media(">=desktop") {
+    .OfferSlider {
+        padding: 4rem 3.3rem !important;
+        margin: -4rem -3.3rem !important; 
+
+        &-Wrapper {
+            margin-bottom: 0;
+            width: 1140px !important;
+            @include flex(flex-start, flex-start, row);
+        }
+    
+        &-Slide {
+            position: relative;
+            display: block;
+        }
+    
+        &-Offer {
+            width: 21rem !important; 
+            height: 35.5rem !important;
+            min-width: unset; 
+        }
+    
+        &-Pagination {
+            display: none;
+        }
+    }
+    
+    .Offer {
+        overflow: initial;
+        padding: 0;
+        position: relative;
+        box-shadow: 0 0 2rem var(--clr-neutral-1200);
+        min-height: initial;
+
+        &-Content {
+            position: relative;
+            overflow: hidden;
+            width: inherit;
+            height: inherit;
+            padding: 3rem 2.5rem;
+        }
+    
+        &-ProductName {
+            font-size: var(--fs-1440-16);
+        }
+    
+        &-Price {
+            z-index: 2;
+            @include flex(center, flex-start, row);
+        }
+    
+        &-NewPrice {
+            font-size: var(--fs-1440-28);
+        }
+    
+        &-OldPrice {
+            font-size: var(--fs-1440-16);
+        }
+    
+        &-ProductImageWrapper {
+            position: absolute;
+            bottom: -2%;
+            right: 0;
+            z-index: 1;
+        }
+    
+        &-ProductImage {
+            max-width: 20rem;
+            max-height: 25.5rem;
+            z-index: 1;
+            object-fit: contain;
+            user-select: none;
+            pointer-events: none;
+        }
+    
+        &-Button {
+            bottom: -4.5rem;
+        }
+    }
+}

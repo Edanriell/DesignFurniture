@@ -1,0 +1,62 @@
+@use "../abstracts/mixins" as *;
+@use "../vendors/include-media" as *;
+
+$breakpoints: (
+	phone: 320px,
+	desktop: 1440px
+);
+
+.Reviews {
+    display: none;
+}
+
+@include media(">=desktop") {
+	.Reviews {
+        display: block;
+        padding-bottom: 10rem;
+    }
+    
+    .Review {
+        @include flex(center, center, column);
+
+        &-CustomerPicture {
+            width: 8rem;
+            height: 8rem;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 2.5rem;
+        }
+    
+        &-CustomerName {
+            display: block;
+            text-align: center;
+            color: var(--clr-neutral-400);
+            font-family: var(--ff-normal-400b);
+            font-weight: 700;
+            font-size: var(--fs-1440-18);
+            line-height: 2.47rem;
+        }
+    
+        &-CustomerOccupation {
+            display: block;
+            color: var(--clr-neutral-400);
+            font-family: var(--ff-normal-400a);
+            font-weight: 400;
+            font-size: var(--fs-1440-16);
+            line-height: 2.47rem;
+        }
+    
+        &-Text {
+            margin-top: 2rem;
+            margin-bottom: 2.5rem;
+            width: 65rem;
+            text-align: center;
+            color: var(--clr-neutral-400);
+            font-family: var(--ff-italic-400);
+            font-weight: 400;
+            font-size: var(--fs-1440-16);
+            line-height: 2.47rem;
+            font-style: italic;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+@use "../abstracts/mixins" as *;
+@use "../vendors/include-media" as *;
+@use "../abstracts/variables" as *;
+
+$breakpoints: (
+	phone: 320px,
+	tablet: 768px,
+	desktop: 1440px
+);
+
+.Hero {
+	background-color: var(--bg-light-blue);
+	position: relative;
+
+	&-Content {
+		padding-bottom: 8rem;
+		max-width: 64.8rem; 
+		min-width: 28.8rem; 
+		width: 100%; 
+		margin: 0 auto; 
+	}
+
+	&-HeroSlider {
+		position: relative;
+	}
+}
+
+@include media(">=tablet") {
+	.Hero {
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 36.60%;
+            height: 100%;
+            background-color: var(--clr-accent-300);
+            z-index: 1;
+        }
+
+		&-Content {
+			max-width: 144rem; 
+			min-width: inherit; 
+			width: 100%; 
+			margin: 0 auto; 
+			padding-bottom: 0;
+			z-index: 2;
+			@include flex(flex-start, flex-start, row);
+		}
+	}
+}

@@ -1,0 +1,109 @@
+.Search {
+	position: relative;
+
+    &-Wrapper {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 90%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 120;
+        display: none;
+    }
+
+    &-Content {
+        display: grid;
+        grid-template-rows: 20% 60%;
+        grid-template-columns: 60%;
+        row-gap: 4rem;
+        position: relative;
+        justify-content: center;
+        margin: 10rem auto 0;
+        max-width: 140rem;
+        min-width: 32rem;
+    }
+
+    &-Form {
+        position: relative;
+        display: grid;
+        grid-template-columns: 70% 30%;
+    }
+
+    &-Field {
+        height: 6rem;
+        background: rgba(255, 255, 255, 100%);
+        box-shadow: rgba(50, 50, 93, 25%) 0 30px 60px -12px, rgba(0, 0, 0, 30%) 0 18px 36px -18px;
+        z-index: 120;
+    }
+
+    &-Input {
+        width: 100%;
+        height: 100%;
+        padding: 1rem 3rem;
+        font-family: var(--ff-normal-400b);
+        font-size: 1.6rem;
+
+        &::placeholder {
+            font-size: 1.6rem;
+            font-family: var(--ff-normal-400b);
+            color: balck;
+            opacity: 0.6;
+        }
+    }
+
+    &-Button {
+        font-size: 1.6rem;
+        background-color: var(--clr-primary-100);
+        font-family: var(--ff-normal-400b);
+        color: var(--clr-secondary-100);
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        transition: background-color 0.6s ease;
+        text-transform: uppercase;
+
+        &:hover {
+            background-color: rgb(31, 31, 32);
+            transition: background-color 0.3s ease;
+        }
+    }
+
+    &-ItemsContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20rem;
+        background: rgba(255, 255, 255, 100%);
+        box-shadow: rgba(50, 50, 93, 25%) 0 30px 60px -12px, rgba(0, 0, 0, 30%) 0 18px 36px -18px;
+        z-index: 120;
+        padding: 3rem;
+        box-sizing: border-box;
+    }
+
+    &-Text {
+        font-family: var(--ff-normal-400b);
+        font-size: 1.8rem;
+    }
+
+    &-CloseButtonWrapper {
+        position: absolute;
+        top: 0;
+        right: 50%;
+    }
+
+    &-CloseButton {
+        cursor: pointer;
+        position: absolute;
+        top: -8rem;
+        right: -40vw;
+    }
+
+    &-CloseIcon {
+        width: 6rem;
+        height: 6rem;
+        fill: rgba(255, 255, 255, 100%);
+        z-index: 140;
+    }
+
+}

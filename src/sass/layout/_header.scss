@@ -1,0 +1,224 @@
+@use "../abstracts/mixins" as *;
+@use "../vendors/include-media" as *;
+@use "../abstracts/variables" as *;
+
+$breakpoints: (
+	phone: 320px,
+	tablet: 768px,
+	desktop: 1440px
+);
+
+.Header {
+    background-color: var(--bg-white);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    &-Content {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        @include flex(center, space-between, row);
+    }
+}
+
+.Logotype {
+    cursor: auto;
+
+    &-Image {
+        width: 2rem;
+        height: 2rem;
+        fill: var(--clr-primary-300);
+    }
+}
+
+.MainNavigation {
+    display: block;
+    order: 1;
+
+    &-Content {
+        display: none;
+    }
+
+    &-MobileNavigationBurger {
+        display: block;
+    }
+}
+
+.UserNavigation {
+    margin-left: auto;
+    @include flex(flex-start, center, row);
+
+    &-Item {
+        margin-right: 2rem;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &-Link {
+        position: relative;
+    }
+
+    &-ShoppingBag::after {
+        content: attr(data-selected-items);
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -0.8rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        background-color: var(--clr-neutral-500);
+        color: var(--clr-secondary-100);
+        font-size: var(--fs-320-11);
+        line-height: 1.5rem;
+        font-weight: 500;
+        font-family: var(--ff-normal-500);
+        letter-spacing: 0.143rem;
+        text-align: center;
+    }
+
+    &-SearchIcon {
+        width: 2.3rem;
+        height: 2.4rem;
+        fill: var(--clr-neutral-500);
+        transition: transform 0.6s ease;
+
+        &:hover,
+        &:focus {
+            transform: scale(1.1) rotate(-10deg);
+            transition: transform 0.3s ease;
+        }
+    }
+
+    &-ShoppingBagIcon{
+        width: 2rem;
+        height: 2.4rem;
+        fill: none;
+        position: relative;
+        transition: transform 0.6s ease;
+
+        &:hover,
+        &:focus {
+            transform: scale(1.1) rotate(-10deg);
+            transition: transform 0.3s ease;
+        }
+    }
+}
+
+@include media(">=tablet") {
+    .Header {
+        background-color: var(--bg-light-blue);
+        position: relative;
+    
+        &-Content {
+            padding-top: 9rem;
+            padding-bottom: 9rem;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 36.60%;
+            height: 100%;
+            background-color: var(--clr-accent-300);
+            z-index: 1;
+        }
+    }
+    
+    .Logotype {
+        order: 1;
+    }
+    
+    .MainNavigation {
+        order: 2;
+        z-index: 2;
+    
+        &-Content {
+            display: block;
+            margin-left: min(6rem + 4vw, 14rem);
+            @include flex(flex-start, flex-start, row);
+        }
+    
+        &-Item {
+            margin-right: min(1rem + 4vw, 6rem);
+        }
+    
+        &-Link {
+            color: var(--clr-primary-100);
+            font-family: var(--ff-normal-400b);
+            font-style: normal;
+            font-weight: 400;
+            font-size: var(--fs-1440-14);
+            line-height: 1.9rem;
+            letter-spacing: 0.182rem; 
+            text-transform: uppercase;
+            position: relative; 
+
+            &::before {
+                content: "";
+                position: absolute;
+                bottom: -0.5rem;
+                left: 0;
+                width: 100%;
+                height: 0.2rem;
+                background-color: var(--clr-primary-100);
+                transform: scaleX(0);
+                transition: transform 0.4s ease;
+                transform-origin: center;
+            }
+    
+            &:hover::before {
+                transition: transform 0.3s ease;
+                transform: scaleX(1);
+            }
+        }
+    
+        &-MobileNavigationBurger {
+            display: none; 
+        }
+    }
+    
+    .UserNavigation {
+        order: 3;
+        z-index: 2;
+    
+        &-ShoppingBag::after {
+            width: 1.8rem;
+            height: 1.8rem;
+            font-size: var(--fs-1440-12);
+            line-height: 1.8rem;
+            letter-spacing: 0.156rem;
+        }
+    
+        &-SearchIcon {
+            width: 2.4rem;
+            height: 2.5rem;
+        }
+    
+        &-ShoppingBagIcon{
+            width: 2.3rem;
+            height: 2.7rem;
+        }
+    }
+}
+
+@include media(">=desktop") {
+    .MainNavigation {
+        &-Content {
+            margin-left: 14rem;
+        }
+    
+        &-Item {
+            margin-right: 6rem;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}

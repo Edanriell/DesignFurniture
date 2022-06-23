@@ -1,0 +1,71 @@
+@use "../vendors/include-media" as *;
+
+$breakpoints: (
+	phone: 320px,
+	desktop: 1440px
+);
+
+.Button {
+	width: 28.8rem;
+	height: 5.8rem;
+	background-color: var(--clr-primary-100);
+	color: var(--clr-secondary-100);
+	font-family: var(--ff-normal-400b);
+	font-style: normal;
+	font-weight: 400;
+	font-size: var(--fs-320-16);
+	line-height: 2.2rem;
+	text-transform: uppercase;
+	letter-spacing: 0.208rem;
+	cursor: pointer;
+	text-align: center;
+	position: relative;
+	z-index: 2;
+
+	&-Text {
+		z-index: 2;
+		position: relative;
+		transition: color 0.6s ease;
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: var(--clr-accent-300);
+		opacity: 0;
+		transform: scaleX(0);
+		transform-origin: center;
+		transition: transform 0.3s ease, opacity 0.3s ease;
+	}
+
+	&:hover::after {
+		transform: scaleX(90%);
+		opacity: 1;
+		z-index: 1;
+	}
+
+	&:hover span,
+	&:focus span {
+		color: var(--clr-primary-100);
+		transition: color 0.3s ease;
+	}
+
+	&:focus::after {
+		transform: scaleX(100%);
+		opacity: 1;
+		z-index: 1;
+	}
+}
+
+@include media(">=desktop") {
+	.Button {
+		width: 23.8rem;
+		height: 5.8rem;
+		font-size: var(--fs-1440-16);
+	}
+}

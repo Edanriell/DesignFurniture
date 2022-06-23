@@ -1,0 +1,144 @@
+@use "../abstracts/mixins" as *;
+
+.ReviewsSlider {
+    position: relative;
+    max-width: 65rem;
+
+    &-Content {
+        position: relative;
+    }
+
+    &-PaginationWrapper {
+        position: relative;
+    }
+
+    &-Pagination {
+        list-style-type: none;
+        text-align: center;
+        min-height: 0.8rem;
+    }
+
+    &-PaginationDot {
+        position: relative;
+        display: inline-block;
+        margin-top: -1.8rem;
+        margin-right: 0.7rem;
+        width: 0.8rem;
+        height: 0.8rem;
+        border-radius: 50%;
+        transition: background-color 0.6s ease;
+        
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &-PaginationButton {
+        margin-top: -1.8rem;
+        margin-right: 0.7rem;
+        cursor: pointer;
+        width: 0.8rem;
+        height: 0.8rem;
+        border: 0.1rem solid var(--clr-neutral-1100);
+        border-radius: 50%;
+        display: inline-block;
+        vertical-align:middle;
+        transition: background-color 0.6s ease;
+
+        &:hover,
+        &:focus {
+            background-color: var(--clr-neutral-1100);
+            transition: background-color 0.3s ease;
+        }
+    }
+
+    &-PaginationButton_status_active {
+        border: none;
+        background-color: var(--clr-neutral-1100);
+    }
+
+    &-SliderNavigation {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 99;
+    }
+
+    &-ButtonPrev {
+        width: 3.6rem;
+        height: 3.6rem;
+        border-radius: 50%;
+        background-color: var(--clr-secondary-100);
+        box-shadow: 0 0 20px var(--clr-neutral-900);
+        cursor: pointer;
+        transition: background-color 0.6s ease;
+        position: absolute;
+        top: -4rem;
+        left: -40rem;
+
+        &:hover svg,
+        &:focus svg {
+            transition: stroke 0.3s ease;
+            stroke: var(--clr-neutral-400);
+        }
+
+        &:hover,
+        &:focus {
+            background-color: var(--clr-accent-300);
+            transition: background-color 0.3s ease;
+        }
+    }
+
+    &-ArrowIcon {
+        width: 1.5rem;
+        height: 0.9rem;
+        stroke: var(--clr-neutral-1000);
+        fill: none;
+        transition: stroke 0.3s ease;
+    }
+
+    &-ButtonNext {
+        width: 3.6rem;
+        height: 3.6rem;
+        border-radius: 50%;
+        background-color: var(--clr-secondary-100);
+        box-shadow: 0 0 20px hsla(0deg, 0%, 0%, 10%);
+        cursor: pointer;
+        transition: background-color 0.6s ease;
+        position: absolute;
+        top: -4rem;
+        right: -40rem;
+
+        &:hover svg,
+        &:focus svg {
+            transition: stroke 0.3s ease;
+            stroke: var(--clr-neutral-400);
+        }
+
+        &:hover,
+        &:focus {
+            background-color: var(--clr-accent-300);
+            transition: background-color 0.3s ease;
+        }
+    }
+
+    &-ButtonDisabled { 
+        background-color: var(--clr-neutral-1100);
+        cursor: not-allowed;
+
+        &:hover svg,
+        &:focus svg {
+            stroke: white;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: var(--clr-neutral-400);
+        }
+    }
+
+    &-ButtonDisabled svg {
+        stroke: white;
+    }
+}

@@ -1,0 +1,60 @@
+@use "../vendors/include-media" as *;
+@use "../abstracts/variables" as *;
+
+$breakpoints: (
+	phone: 320px,
+	tablet: 768px,
+	desktop: 1440px
+);
+
+.LastChanceOffers {
+    background-color: var(--bg-light-blue);
+
+    &-Content {
+        padding-bottom: 7rem;
+        min-width: 34.3rem; 
+    }
+
+    &-Tabs {
+        margin-top: 3rem;
+    }
+}
+
+@include media(">=tablet") {
+    .LastChanceOffers-Content > header h2 {
+        font-size: min(calc(0.5rem + 2.5vw), 2.8rem);
+        line-height: 3.732rem;
+        letter-spacing: 0.14rem;
+    }
+}
+
+@include media(">=desktop") {
+    .LastChanceOffers {
+        position: relative;
+
+        &-Content {
+            padding-bottom: 11rem;
+            padding-top: 7rem;
+        }
+    
+        &-Tabs {
+            margin-top: 4rem;
+        }
+
+        header h2 {
+            font-size: var(--fs-1440-28);
+            line-height: 3.732rem;
+            letter-spacing: 0.14rem;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 56%;
+            height: 54.5rem;
+            background-color: var(--clr-accent-100);
+        }
+    }
+}

@@ -1,0 +1,105 @@
+@use "../abstracts/mixins" as *;
+@use "../vendors/include-media" as *;
+
+$breakpoints: (
+	phone: 320px,
+	tablet: 768px,
+	desktop: 1440px
+);
+
+.Tabs {
+    position: relative;
+
+    &-Buttons {
+        margin-bottom: 2rem;
+        @include flex(center, center, row);
+    }
+
+    &-ButtonWrapper {
+        &:last-child > button {
+            margin-right: 0;
+        }
+    }
+
+    &-Button {
+        cursor: pointer;
+        font-family: var(--ff-normal-600);
+        color: var(--clr-neutral-200);
+        font-style: normal;
+        font-weight: 600;
+        font-size: var(--fs-320-16);
+        line-height: 2.5rem;
+        transition: color 0.6s ease;
+        margin-right: 5.5rem;
+
+        &_state_Active {
+            font-family: var(--ff-normal-600);
+            color: var(--clr-primary-300);
+            font-style: normal;
+            font-weight: 600;
+            font-size: var(--fs-320-16);
+            line-height: 2.5rem;
+            border-bottom: 1px solid var(--clr-primary-300);
+        }
+
+        &:hover,
+        &:focus {
+            color: var(--clr-primary-300);
+            transition: color 0.3s ease;
+        }
+    }
+
+    &-Content {
+        min-height: 47.95rem;
+    }
+
+    &-ContentWrapper {
+        width: max(26.3rem, 82%);
+        margin: 0 auto;
+    }
+}
+
+@include media(">=tablet") {
+    .Tabs {
+        &-Buttons {
+            margin-bottom: 2rem;
+            @include flex(center, center, row);
+        }
+
+        &-Button {
+            margin-right: 5rem;
+        }
+    }
+}
+
+@include media(">=desktop") {
+    .Tabs {
+        &-Buttons {
+            margin-bottom: 2.5rem;
+            @include flex(center, flex-start, row);
+        }
+
+        &-ButtonWrapper { 
+            margin-right: 5rem;
+            z-index: 90;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    
+        &-Button {
+            font-size: var(--fs-1440-16);
+            margin-right: 0;
+    
+            &_state_Active {
+                font-size: var(--fs-1440-16);
+            }
+        }
+
+        &-ContentWrapper {
+            width: auto;
+            margin: unset;
+        }
+    }
+}

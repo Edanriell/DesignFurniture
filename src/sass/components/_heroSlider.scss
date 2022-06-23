@@ -1,0 +1,357 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/placeholders" as *;
+@use "../vendors/include-media" as *;
+
+$breakpoints: (
+	phone: 320px,
+	tablet: 768px,
+	desktop: 1440px
+);
+
+.HeroSlider {
+    order: 1;
+    align-self: center;
+    margin-bottom: 3rem;
+
+    &-SlidesContentWrapper {
+        order: 2;
+        min-height: 25.2rem;
+    }
+
+    &-SlideContent { 
+        display: none;
+
+        &:first-child {
+            display: block;
+        }
+    }
+
+    &-SlideTitle {
+        color: var(--clr-primary-100);
+        font-family: var(--ff-normal-700c);
+        font-style: normal;
+        font-weight: 700;
+        font-size: var(--fs-320-27);
+        line-height: 4.59rem;
+        text-transform: uppercase;
+        letter-spacing: 0.135rem;
+        display: block;
+    }
+
+    &-ProductName {
+        margin-bottom: 0.5rem;
+        color: var(--clr-primary-100);
+        font-family: var(--ff-normal-400b);
+        font-style: normal;
+        font-weight: 400;
+        font-size: var(--fs-320-20);
+        line-height: 2.7rem;
+    }
+
+    &-ProductPrice {
+        margin-bottom: 3rem;
+        @include flex(center, flex-start, row);
+    }
+
+    &-ProductOldPrice {
+        color: var(--clr-primary-100);
+        font-family: var(--ff-normal-400b);
+        font-style: normal;
+        font-weight: 400;
+        font-size: var(--fs-320-20);
+        line-height: 2.7rem;
+        text-decoration: none;
+        margin-right: 2.2rem;
+    }
+
+    &-ProductNewPrice {
+        color: var(--clr-primary-100);
+        font-family: var(--ff-normal-600);
+        font-style: normal;
+        font-weight: 600;
+        font-size: var(--fs-320-30);
+        line-height: 4.1rem;
+    }
+
+    &-SlideImage {
+        object-fit: contain;
+        width: 100%;
+        max-height: 27.7rem;
+    }
+
+    &-PaginationWrapper {
+        display: block;
+        order: 3;
+        @include flex(flex-end, flex-start, row);
+    }
+
+    &-PaginationProgressBar {
+        position: relative;
+        @extend %progress-bar;
+    }
+
+    &-PaginationProgressBar_fillColor_dark {
+        display: block;
+        position: relative;
+        transform-origin: left;
+        @extend %progress-bar-progress;
+    }
+
+    &-Pagination {
+        margin-top: 2.5rem;
+        order: 1;
+        @include flex(center, flex-start, row);
+    }
+
+    &-PaginationItem {
+        display: none;
+
+        &:first-child {
+            display: none;
+
+            &::after {
+                @extend %number-devider;
+            }
+        }
+
+        &:last-child {
+            display: none;
+            margin-left: 0.4rem;
+        }
+    }
+
+    &-PaginationButton {
+        cursor: auto;
+    }
+
+    &-PaginationNumber {
+        color: var(--clr-primary-200);
+        font-family: var(--ff-normal-600);
+        font-style: normal;
+        font-weight: 600;
+        font-size: var(--fs-320-15);
+        line-height: 2.55rem;
+    }
+
+    &-PaginationShort {
+        margin-top: 2.5rem;
+        order: 1;
+        @include flex(center, center, row);
+    }
+
+    &-CurrentSlide {
+        &::after {
+            margin-left: 0.4rem;
+            @extend %number-devider;
+        }
+    }
+
+    &-TotalSlides {
+        margin-left: 0.4rem; 
+    } 
+}
+
+@include media(">=420px", "<=tablet") {
+    .HeroSlider {
+        &-SlideContent { 
+            button {
+                display: block;
+                margin: 0 auto;
+            }
+        }
+
+        &-SlideTitle {
+            text-align: center;
+        }
+    
+        &-ProductName {
+            text-align: center;
+        }
+
+        &-PaginationWrapper {
+            @include flex(flex-end, center, row);
+        }
+
+        &-ProductPrice {
+            @include flex(center, center, row);
+        }
+    }
+}
+
+@include media("<=tablet") {
+    .HeroSlider {
+        &-PaginationWrapper {
+            display: flex !important;
+        }
+    }		
+}
+
+@include media(">=tablet") {
+    .HeroSlider {
+        order: 2;
+        margin-bottom: 0;
+        z-index: 2 !important;
+
+        &-PaginationShort {
+            display: none;
+        }
+    
+        &-SlidesContentWrapper {
+            order: 1;
+            margin-right: 2rem;
+            min-height: 30.5rem;
+            min-width: clamp(34rem, 44vw, 48rem);
+        }
+    
+        &-SlideTitle {
+            font-size: min(calc(1.7rem + 2.5vw), 5.7rem);
+            line-height: min(calc(1.7rem + 2.5vw), 8.265rem);
+            letter-spacing: 0.285rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            display: block;
+        }
+    
+        &-ProductName {
+            margin-bottom: 1rem;
+            font-size: min(calc(1rem + 1vw), 2rem);
+        }
+    
+        &-ProductPrice {
+            margin-bottom: 3.5rem;
+        }
+    
+        &-ProductOldPrice {
+            font-size: min(calc(1rem + 1vw), 2rem);
+        }
+    
+        &-ProductNewPrice {
+            font-weight: 600;
+            font-size: min(calc(2rem + 1vw), 3rem);
+        }
+
+        &-SlideImage {
+            max-width: calc(10.2rem + 25vw);
+            max-height: calc(12.4rem + 25vw);
+        }
+    
+        &-PaginationWrapper {
+            margin-left: 1rem;
+            z-index: 2;
+            @include flex(flex-end, flex-start, column);
+        }
+    
+        &-PaginationProgressBar {
+            display: none;
+        }
+    
+        &-Pagination {
+            margin-top: 6vw;
+            width: 6.1rem;
+            @include flex(center, center, column);
+        }
+    
+        &-PaginationItem {
+            display: block;
+            margin-bottom: 2rem;
+    
+            &:first-child {
+                display: block;
+
+                &::after {
+                    display: none;
+                }
+            }
+    
+            &:last-child {
+                margin-left: 0;
+                margin-bottom: 0;
+                display: block;
+            }
+        }
+    
+        &-PaginationButton {
+            cursor: pointer;
+        }
+
+        &-PaginationButton > span {
+            &::after {
+                content: "";
+                margin-left: 1rem; 
+                display: inline-block;
+                width: 0.2rem;
+                height: 0; // remove
+                background-color: var(--clr-primary-300);
+                transform: translateY(30%);
+                opacity: 0;
+                transition: all 0.3s ease-in-out;
+            }
+        }
+    
+        &-PaginationNumber {
+            color: var(--clr-neutral-800);
+            font-family: var(--ff-normal-400c);
+            font-style: normal;
+            font-weight: 400;
+            font-size: var(--fs-1440-20);
+            line-height: 2.9rem;
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        &-PaginationButton_status_active > span {
+            color: var(--clr-primary-300);
+            font-family: var(--ff-normal-400c);
+            font-style: normal;
+            font-weight: 400;
+            font-size: var(--fs-1440-40);
+            line-height: 5.8rem;
+            letter-spacing: 0.2rem;
+
+            &::after {
+                opacity: 1;
+                height: 5.4rem;
+            }
+        }
+    }	
+}
+
+@include media("<=900px") {
+    .HeroSlider {
+        &-PaginationWrapper {
+            display: none;
+        }
+    }		
+}
+
+@include media(">=desktop") {
+    .HeroSlider {
+        &-SlidesContentWrapper {
+            min-width: 51.375rem;
+        }
+
+        &-SlideTitle {
+            font-size: var(--fs-1440-57);
+            line-height: 8.265rem;
+            letter-spacing: 0.285rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            display: block;
+        }
+    
+        &-ProductName {
+            margin-bottom: 1rem;
+            font-size: var(--fs-1440-20);
+        }
+    
+        &-ProductOldPrice {
+            font-size: var(--fs-1440-20);
+        }
+    
+        &-ProductNewPrice {
+            font-weight: 600;
+            font-size: var(--fs-1440-30);
+        }
+    }	
+}

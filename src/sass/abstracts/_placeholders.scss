@@ -1,0 +1,42 @@
+%burger-menu-bar {
+    height: 0.2rem;
+    width: 2.5rem;
+    background-color: var(--clr-neutral-500);
+    border-radius: 1rem;
+}
+
+%number-devider {
+    content: "/";
+    display: inline-block;
+    color: var(--clr-primary-200);
+    font-family: var(--ff-normal-600);
+    font-style: normal;
+    font-size: var(--fs-320-15);
+    line-height: 2.55rem;
+}
+
+%section-bar {
+    content: "";
+    width: 9rem;
+    height: 0.4rem;
+    background-color: var(--clr-primary-100);
+    display: block;
+}
+
+%progress-bar {
+    width: 22.6rem;
+    height: 0.2rem;
+    background-color: var(--clr-neutral-100);
+    position: relative;
+    margin-right: 1.5rem;
+    margin-bottom: 1.15rem;
+}
+
+%progress-bar-progress {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0.2rem;
+    background-color: var(--clr-primary-100);
+}

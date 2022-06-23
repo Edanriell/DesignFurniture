@@ -1,0 +1,211 @@
+@use "../abstracts/mixins" as *;
+@use "../vendors/include-media" as *;
+@use "../abstracts/variables" as *;
+
+$breakpoints: (
+	phone: 320px,
+	tablet: 768px,
+	desktop: 1440px
+);
+
+.NewProducts {
+    background-color: var(--bg-light-blue);
+
+    &-Content {
+        padding-bottom: 8rem;
+    }
+
+    &-NewProductList {
+        padding-top: 4rem;
+    }
+}
+
+.NewProductList {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 28.8rem);
+    gap: 3rem;
+
+    &-ItemContent {
+        width: 28.8rem;
+        height: 28.9rem;
+        box-sizing: border-box;
+        background-color: var(--clr-secondary-100);
+        transition: background 0.6s ease;
+        padding-bottom: 1.5rem;
+        @include flex(center, center, column);
+
+        &:hover {
+            background-color: var(--clr-accent-100);
+            transition: background 0.3s ease;
+        }
+    }
+
+    &-Item {
+        box-shadow: 0 0 2.5rem var(--clr-neutral-1200);
+
+        &:first-child {
+            box-shadow: none;
+        }
+    }
+
+    &-Item0 {
+        display: none;
+    }
+
+    &-ItemTitle {
+        color: var(--clr-primary-100);
+        font-family: var(--ff-normal-400b);
+        font-style: normal;
+        font-weight: 400;
+        font-size: var(--fs-320-20);
+        line-height: 2.7rem;
+        text-align: center;
+    }
+
+    &-ItemImageWrapper {
+        order: -1;
+    }
+
+    &-ItemImage {
+        order: -1;
+        object-fit: contain;
+        pointer-events: none;
+        user-select: none;
+        vertical-align: middle;
+    }
+
+    &-ItemImage_state_flipped {
+        transform: scaleX(-1);
+    }
+
+    &-ItemPrice {
+        color: var(--clr-primary-100);
+        font-family: var(--ff-normal-600);
+        font-size: var(--fs-320-28);
+        font-style: normal;
+        font-weight: 600;
+        line-height: 3.8rem;
+        margin-top: 0.5rem;
+    }
+}
+
+@include media(">=tablet") {
+    .NewProducts-Content > header h2 {
+        font-size: min(calc(0.5rem + 2.5vw), 2.8rem);
+        line-height: 3.732rem;
+        letter-spacing: 0.14rem;
+    }
+
+    .NewProductList {
+        grid-template-columns: repeat(auto-fit, min(40%, 44rem));
+    
+        &-ItemContent {
+            width: min(100%, 44rem);
+            height: 28.9rem;
+        }
+    }
+}
+
+@include media(">=desktop") {
+    .NewProducts {
+        &-Content {
+            padding-bottom: 10rem;
+            padding-top: 12rem;
+        }
+    
+        &-NewProductList {
+            padding-top: 0;
+        }
+    }
+    
+    .NewProductList {
+        display: grid;
+        justify-content: initial;
+        gap: 0;
+        column-gap: 3rem;
+        row-gap: 3.5rem;
+        grid-template-columns: repeat(4, 27rem);
+        grid-template-rows: repeat(2, auto);
+        grid-auto-flow: dense;
+        grid-template-areas:
+            "title item1 item-big item-big"
+            "item2 item3 item-big item-big";
+
+        &-Item {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        &-Item0 {
+            display: block;
+            grid-area: title;
+             
+            div {
+                height: 100%;
+                @include flex(flex-start, center, column);
+            }
+
+            p {
+                font-size: var(--fs-1440-28);
+                line-height: 3.732rem;
+                letter-spacing: 0.14rem;
+            }
+        }
+
+        &-Item1 {
+            grid-area: item1;
+        }
+
+        &-Item2 {
+            grid-area: item2;
+        }
+
+        &-Item3 {
+            grid-area: item3;
+        }
+
+        &-Item4 {
+            grid-area: item-big;
+        }
+
+        &-Item_size_normal {
+            width: 27rem;
+            height: 28.9rem;
+            box-shadow: 0 0 2.5rem var(--clr-neutral-1300);
+        }
+
+        &-Item_size_big {
+            grid-column: span 2;
+            grid-row: span 2;
+            width: 57rem;
+            height: 61.4rem;
+            box-shadow: 0 0 2.5rem var(--clr-neutral-1300);
+        }
+    
+        &-ItemContent {
+            width: 100%;
+            height: 100%;
+            padding-bottom: 0;
+        }
+
+        &-ItemContent_size_big {
+            width: 100%;
+            height: 100%;
+        }
+
+        &-ItemImageWrapper_size_big > img {
+            width: 49rem;
+            height: 46.6rem;
+            object-fit: contain;
+        }
+    
+        &-ItemTitle {
+            font-size: var(--fs-1440-20);
+        }
+
+        &-ItemPrice {
+            font-size: var(--fs-1440-28);
+        }
+    }
+}

@@ -1,0 +1,48 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/placeholders" as *;
+@use "../vendors/include-media" as *;
+
+$breakpoints: (
+	phone: 320px,
+	desktop: 1440px
+);
+
+.SectionHeader {
+    position: relative;
+
+    &-Title {
+        font-family: var(--ff-normal-700c);
+        font-size: var(--fs-320-20);
+        font-style: normal;
+        font-weight: 700;
+        line-height: 2.7rem;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+        color: var(--clr-primary-100);
+    }
+
+    &_view_desktop {
+        display: none;
+    }
+
+    &_view_mobile {
+        display: block;
+    }
+
+    &::after {
+        margin-top: 1rem;
+        @extend %section-bar;
+    }
+}
+
+@include media(">=desktop") {
+    .SectionHeader {
+        &_view_desktop {
+            display: block;
+        }
+
+        &_view_mobile {
+            display: none;
+        }
+    }
+}
